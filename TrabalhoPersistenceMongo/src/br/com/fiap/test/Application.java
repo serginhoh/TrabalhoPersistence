@@ -30,19 +30,22 @@ public class Application implements CommandLineRunner {
 		clienteRepository.deleteAll();
 
 		List<Endereco> enderecos = new ArrayList<>();
-		enderecos.add(new Endereco("1", "Rua 1", "Cidade 1"));
-		enderecos.add(new Endereco("2", "Rua 2", "Cidade 2"));
+		enderecos.add(new Endereco("Avenida Dra Ruth Cardoso", "7221", "5o Andar", "05425-902", "São Paulo", "SP"));
+		enderecos.add(new Endereco("Rua Cenno Sbrighi", "170", "5o Andar", "05036-010", "São Paulo", "SP"));
+		enderecos.add(new Endereco("Rua Aurélia", "628", "", "05036-010", "São Paulo", "SP"));
 
-		clienteRepository.save(new Cliente("1", "Cliente 1", "cpf1", enderecos));
+		clienteRepository.save(new Cliente("Cliente 1", "cpf1", enderecos));
 
-		clienteRepository.save(new Cliente("2", "Cliente 2", "cpf2", enderecos));
+		clienteRepository.save(new Cliente( "Cliente 2", "cpf2", enderecos));
 		
-		Cliente optCliente = clienteRepository.findById("1").get();
+		Optional<Cliente> optCliente = clienteRepository.findById("1");
+		if (optCliente.isPresent())
+			System.out.println(optCliente.get().getNome());
+		else
+			System.out.println("Não encontrado.");
 
-		System.out.println(optCliente.getNome());
-
-		optCliente = clienteRepository.findByCpf("cpf1");
-		System.out.println(optCliente.getCpf());
+		Cliente cliente1 = clienteRepository.findByCpf("cpf1");
+		System.out.println(cliente1.getCpf());
 
 		List<Cliente> lista = clienteRepository.findByNomeLike("Cli");
 		for (Cliente cliente : lista) {

@@ -5,18 +5,20 @@ import org.springframework.data.annotation.Id;
 public class Endereco {
 	@Id
 	private String id;
-	private String rua;
+	private String logradouro;
+	private String numero;
+	private String complemento;
+	private String cep;
 	private String cidade;
+	private String estado;
 
-	public Endereco() {
-		super();
-	}
-
-	public Endereco(String id, String rua, String cidade) {
-		super();
-		this.cidade = id;
-		this.rua = rua;
+	public Endereco(String logradouro, String numero, String complemento, String cep, String cidade, String estado) {
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.cep = cep;
 		this.cidade = cidade;
+		this.estado = estado;
 	}
 
 	public String getId() {
@@ -27,12 +29,36 @@ public class Endereco {
 		this.id = id;
 	}
 
-	public String getRua() {
-		return rua;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setRua(String rua) {
-		this.rua = rua;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
 	public String getCidade() {
@@ -41,5 +67,13 @@ public class Endereco {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 }

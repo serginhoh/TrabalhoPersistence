@@ -13,10 +13,9 @@ public class Cliente {
     private String cpf;
     private List<Endereco> endereco;
 
-    public Cliente(String id, String nome, String cpf, List<Endereco> endereco) {
+    public Cliente(String nome, String cpf, List<Endereco> endereco) {
         super();
-        this.id = id;
-        this.nome = nome;
+         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
     }
