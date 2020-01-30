@@ -35,9 +35,8 @@ public class Application implements CommandLineRunner {
 
 		clienteRepository.save(new Cliente("1", "Cliente 1", "cpf1", enderecos));
 
+		clienteRepository.save(new Cliente("2", "Cliente 2", "cpf2", enderecos));
 		
-		List<Cliente> lista = clienteRepository.findAll();
-
 		Cliente optCliente = clienteRepository.findById("1").get();
 
 		System.out.println(optCliente.getNome());
@@ -45,6 +44,12 @@ public class Application implements CommandLineRunner {
 		optCliente = clienteRepository.findByCpf("cpf1");
 		System.out.println(optCliente.getCpf());
 
+		List<Cliente> lista = clienteRepository.findByNomeLike("Cli");
+		for (Cliente cliente : lista) {
+			System.out.println("Like : " + cliente.getId() + " - " + cliente.getNome() + " - " + cliente.getCpf() );
+		}
+
+		lista = clienteRepository.findAll();
 
 		for (Cliente cliente : lista) {
 			System.out.println(cliente.getId() + " - " + cliente.getNome() + " - " + cliente.getCpf() );

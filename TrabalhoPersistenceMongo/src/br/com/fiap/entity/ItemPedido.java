@@ -10,8 +10,9 @@ public class ItemPedido {
     private Produto produto;
     private int quantidade;
 
-    public ItemPedido(Pedido pedido, Produto produto, int quantidade) {
+    public ItemPedido(String id, Pedido pedido, Produto produto, int quantidade) {
         super();
+        this.id = id;
         this.pedido = pedido;
         this.produto = produto;
         this.quantidade = quantidade;
