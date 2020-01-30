@@ -9,9 +9,8 @@ public class Produto {
 	private String nome;
 	private double valor;
 
-	public Produto(String id, String codigo, String nome, double valor) {
+	public Produto(String codigo, String nome, double valor) {
 		super();
-		this.id = id;
 		this.codigo = codigo;
 		this.nome = nome;
 		this.valor = valor;
