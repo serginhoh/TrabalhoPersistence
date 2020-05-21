@@ -55,25 +55,41 @@ public class Application implements CommandLineRunner {
 
         clienteRepository.save(new Cliente("Cliente 2", "cpf2", enderecos));
 
-        Optional<Cliente> optCliente = clienteRepository.findById("1");
+
+        System.out.println("Cliente:");
+        System.out.println("");
+        System.out.println("findAll");
+        List<Cliente>  lista = clienteRepository.findAll();
+
+        for (Cliente cliente : lista) {
+            System.out.println(" - " + cliente.getId() + " - " + cliente.getNome() + " - " + cliente.getCpf());
+        }
+
+        System.out.println("");
+        System.out.println("findById");
+
+        Cliente clienteGet = lista.get(0);
+
+        Optional<Cliente> optCliente = clienteRepository.findById(clienteGet.getId());
         if (optCliente.isPresent())
-            System.out.println(optCliente.get().getNome());
+            System.out.println(" - " + optCliente.get().getNome());
         else
             System.out.println("Não encontrado.");
 
+        System.out.println("");
+        System.out.println("findByCpf");
         Cliente cliente1 = clienteRepository.findByCpf("cpf1");
-        System.out.println(cliente1.getCpf());
+        System.out.println(" - " + cliente1.getCpf());
 
-        List<Cliente> lista = clienteRepository.findByNomeLike("Cli");
+        System.out.println("");
+        System.out.println("findByNomeLike -> Cli");
+
+        lista = clienteRepository.findByNomeLike("Cli");
         for (Cliente cliente : lista) {
             System.out.println("Like : " + cliente.getId() + " - " + cliente.getNome() + " - " + cliente.getCpf());
         }
 
-        lista = clienteRepository.findAll();
 
-        for (Cliente cliente : lista) {
-            System.out.println(cliente.getId() + " - " + cliente.getNome() + " - " + cliente.getCpf());
-        }
     }
 
     private void TesteProduto() {
@@ -83,10 +99,14 @@ public class Application implements CommandLineRunner {
         produtoRepository.save(new Produto("002", "Produto 002", 20.00));
         produtoRepository.save(new Produto("003", "Produto 003", 30.00));
 
+        System.out.println("");
+        System.out.println("Produtos");
+        System.out.println("");
+        System.out.println("findAll");
         List<Produto> produtos = produtoRepository.findAll();
 
         for (Produto produto : produtos) {
-            System.out.println(produto.getCodigo() + " - " + produto.getNome());
+            System.out.println(" - " + produto.getCodigo() + " - " + produto.getNome());
         }
     }
 
@@ -99,6 +119,10 @@ public class Application implements CommandLineRunner {
             qtde++;
         }
 
+        System.out.println("");
+        System.out.println("Estoque");
+        System.out.println("");
+        System.out.println("findAll");
         List<Estoque> estoqueList = estoqueRepository.findAll();
         for (Estoque estoque : estoqueList) {
             Produto produto = estoque.getProduto();
@@ -124,6 +148,10 @@ public class Application implements CommandLineRunner {
     		pedidoRepository.save(new Pedido(new Date(), cliente, itemPedidoList));
 		}
 
+        System.out.println("");
+        System.out.println("Pedido");
+        System.out.println("");
+        System.out.println("findAll");
     	List<Pedido> pedidoList = pedidoRepository.findAll();
     	for (Pedido pedido : pedidoList){
 
